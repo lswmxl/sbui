@@ -1,0 +1,54 @@
+{{define "form/realitySettings"}}
+<!-- reality enable -->
+<!-- <a-form layout="inline" v-if="inbound.canEnableReality()">
+    <a-form-item label="reality">
+        <a-switch v-model="inbound.reality">
+        </a-switch>
+    </a-form-item>
+     <a-form-item v-if="inbound.canEnableReality()" label="reality">
+        <a-switch v-model="inbound.reality"></a-switch>
+    </a-form-item> -->
+<!-- </a-form> -->
+
+<!-- reality settings -->
+<a-form v-if="inbound.reality" layout="inline">
+    <a-form-item label="输出调试信息">
+        <a-switch v-model="inbound.stream.reality.show">
+            <!-- <a-select-option :value="false">false</a-select-option>
+            <a-select-option :value="true">true</a-select-option> -->
+        </a-switch>
+    </a-form-item>
+    <a-form-item label="dest">
+        <a-input v-model.trim="inbound.stream.reality.dest" style="width: 165px"></a-input>
+    </a-form-item>
+    <a-form-item label="xver">
+        <a-input v-model.number="inbound.stream.reality.xver"></a-input>
+    </a-form-item>
+    <a-form-item label="uTLS 指纹">
+        <a-select v-model="inbound.stream.reality.fingerprint" style="width: 135px">
+            <a-select-option v-for="key in UTLS_FINGERPRINT" :value="key">[[ key ]]</a-select-option>
+        </a-select>
+    </a-form-item>
+    <a-form-item label="serverNames">
+        <a-input type="textarea" :rows="2" v-model="inbound.stream.reality.serverNames" style="width: 165px"></a-input>
+    </a-form-item>
+    <a-form-item label="私钥">
+        <a-input v-model.trim="inbound.stream.reality.privateKey" style="width: 350px"></a-input>
+    </a-form-item>
+    <a-form-item label="公钥">
+        <a-input v-model.trim="inbound.stream.reality.publicKey" style="width: 350px"></a-input>
+    </a-form-item>
+    <a-form-item label="客户端 xray 允许最低版本">
+        <a-input v-model.trim="inbound.stream.reality.minClientVer"></a-input>
+    </a-form-item>
+    <a-form-item label="客户端 xray 允许最高版本">
+        <a-input v-model.trim="inbound.stream.reality.maxClientVer"></a-input>
+    </a-form-item>
+    <a-form-item label="最大时间差">
+        <a-input v-model.number="inbound.stream.reality.maxTimeDiff"></a-input>
+    </a-form-item>
+    <a-form-item label="shortId">
+        <a-input type="textarea" :rows="2" v-model="inbound.stream.reality.shortIds" style="width: 165px"></a-input>
+    </a-form-item>
+</a-form>
+{{end}}

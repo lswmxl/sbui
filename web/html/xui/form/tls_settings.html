@@ -1,0 +1,102 @@
+{{define "form/tlsSettings"}}
+<!-- tls enable -->
+<a-form layout="inline" v-if="inbound.canSetTls()">
+    <a-form-item label="tls">
+        <a-switch v-model="inbound.tls">
+        </a-switch>
+    </a-form-item>
+    <a-form-item v-if="inbound.canEnableReality()">
+        <span slot="label">
+            reality
+            <a-tooltip>
+                <template slot="title">
+                    仅限 xray 1.8.0 及以上版本！
+                </template>
+                <a-icon type="question-circle" theme="filled"></a-icon>
+            </a-tooltip>
+        </span>
+        <a-switch v-model="inbound.reality"></a-switch>
+    </a-form-item>
+</a-form>
+
+<!-- tls settings -->
+<a-form v-if="inbound.tls" layout="inline">
+    <a-form-item label="域名">
+        <a-input v-model.trim="inbound.stream.tls.server"></a-input>
+    </a-form-item>
+    <a-form-item label="服务端接收的 SNI 与证书域名不匹配则拒绝 TLS 握手">
+        <a-switch v-model="inbound.stream.tls.rejectUnknownSni">
+            <!-- <a-select-option :value="false">false</a-select-option>
+            <a-select-option :value="true">true</a-select-option> -->
+        </a-switch>
+    </a-form-item>
+    <a-form-item>
+        <span slot="label">
+            密码加密套件
+            <a-tooltip>
+                <template slot="title">
+                    默认 auto，如选择其它加密方式请记得删除 auto 选项 加密方式可以多选
+                </template>
+                <a-icon type="question-circle" theme="filled"></a-icon>
+            </a-tooltip>
+        </span>
+        <a-select v-model="inbound.stream.tls.cipherSuites" mode="multiple" style="width: 350px">
+            <a-select-option value="">auto</a-select-option>
+            <a-select-option v-for="key in TLS_CIPHER_OPTION" :value="key">[[ key ]]</a-select-option>
+        </a-select>
+    </a-form-item>
+    <a-form-item label="允许 TLS 最低版本">
+        <a-select v-model="inbound.stream.tls.minVersion" style="width: 60px"
+            :dropdown-class-name="siderDrawer.isDarkTheme ? 'ant-card-dark' : ''">
+            <a-select-option v-for="key in TLS_VERSION_OPTION" :value="key">[[ key ]]</a-select-option>
+        </a-select>
+    </a-form-item>
+    <a-form-item label="允许 TLS 最高版本">
+        <a-select v-model="inbound.stream.tls.maxVersion" style="width: 60px"
+            :dropdown-class-name="siderDrawer.isDarkTheme ? 'ant-card-dark' : ''">
+            <a-select-option v-for="key in TLS_VERSION_OPTION" :value="key">[[ key ]]</a-select-option>
+        </a-select>
+    </a-form-item>
+    <a-form-item label="允许不安全连接">
+        <a-switch v-model="inbound.stream.tls.allowInsecure"></a-switch>
+    </a-form-item>
+    <a-form-item label="uTLS 指纹">
+        <a-select v-model="inbound.stream.tls.fingerprint" style="width: 135px">
+            <a-select-option v-for="key in UTLS_FINGERPRINT" :value="key">[[ key ]]</a-select-option>
+        </a-select>
+    </a-form-item>
+    <a-form-item label="ALPN">
+        <a-checkbox-group v-model="inbound.stream.tls.alpn" style="width:200px">
+            <a-checkbox v-for="key in ALPN_OPTION" :value="key">[[ key ]]</a-checkbox>
+        </a-checkbox-group>
+    </a-form-item>
+    <a-form-item label="证书">
+        <a-radio-group v-model="inbound.stream.tls.certs[0].useFile" button-style="solid">
+            <a-radio-button :value="true">certificate file path</a-radio-button>
+            <a-radio-button :value="false">certificate file content</a-radio-button>
+        </a-radio-group>
+    </a-form-item>
+    <template v-if="inbound.stream.tls.certs[0].useFile">
+        <a-form-item label="OCSP stapling">
+            <a-input v-model.number="inbound.stream.tls.certs[0].ocspStapling"></a-input>
+        </a-form-item>
+        <a-form-item label="公钥文件路径">
+            <a-input v-model.trim="inbound.stream.tls.certs[0].certFile"></a-input>
+        </a-form-item>
+        <a-form-item label="私钥文件路径">
+            <a-input v-model.trim="inbound.stream.tls.certs[0].keyFile"></a-input>
+        </a-form-item>
+    </template>
+    <template v-else>
+        <a-form-item label="ocspStapling">
+            <a-input v-model.number="inbound.stream.tls.certs[0].ocspStapling"></a-input>
+        </a-form-item>
+        <a-form-item label="公钥内容">
+            <a-input type="textarea" :rows="2" v-model="inbound.stream.tls.certs[0].cert"></a-input>
+        </a-form-item>
+        <a-form-item label="私钥内容">
+            <a-input type="textarea" :rows="2" v-model="inbound.stream.tls.certs[0].key"></a-input>
+        </a-form-item>
+    </template>
+</a-form>
+{{end}}
