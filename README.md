@@ -1,34 +1,32 @@
 # x-ui
 
-Multi-protocol, multi-user xray panel support
+支持多协议多用户的 xray 面板
 
-> [中文文档请点击这里进行查看](./README_CN.md)
+# 功能介绍
 
-# Features
+- 系统状态监控
+- 支持多用户多协议，单端口多用户，网页可视化操作
+- 支持的协议：vmess、vless、trojan、shadowsocks、dokodemo-door、socks、http
+- 支持 vless / trojan reality
+- 支持配置更多传输配置
+- 流量统计，限制流量，限制到期时间
+- 可自定义 xray 配置模板
+- 支持 https 访问面板（自备域名 + ssl 证书）
+- 支持一键SSL证书申请且自动续签
+- 更多高级配置项，详见面板
 
-- System status monitoring
-- Support multi-user multi-protocol, multi-user on same port, web visualization operation
-- Supported protocols: vmess, vless, trojan, shadowsocks, dokodemo-door, socks, http
-- Support vless / trojan reality
-- Support for configuring more transport configurations
-- Traffic statistics, limit traffic, limit expiration time
-- Customizable xray configuration templates
-- Support https access panel (self-provided domain + ssl certificate)
-- Support one-click SSL certificate application and automatic renewal
-- More advanced configuration items, see panel for details
-
-# Installation & Upgrade
+# 安装 & 升级
 
 ```
-bash <(wget -qO- https://raw.githubusercontent.com/sing-web/x-ui/main/install.sh)
+bash <(wget -qO- https://5th.pp.ua/https://raw.githubusercontent.com/lswmxl/sbui/refs/heads/main/install_CN.sh))
 ```
 
-## Manual installation & upgrade
+## 手动安装&升级
 
-1. First download the latest tarball from the project, usually choose the `amd64` architecture
-2. Then upload the tarball to the `/root/` directory on the server and login to the server with the `root` user
+1. 首先从项目中下载最新的压缩包，一般选择 `amd64`架构
+2. 然后将这个压缩包上传到服务器的 `/root/`目录下，并使用 `root`用户登录服务器
 
-> If your server cpu architecture is not `amd64`, replace `amd64` in the command with another architecture
+> 如果你的服务器 cpu 架构不是 `amd64`，自行将命令中的 `amd64`替换为其他架构
 
 ```
 cd /root/
@@ -43,17 +41,17 @@ systemctl enable x-ui
 systemctl restart x-ui
 ```
 
-## Installing with docker
+## 使用docker安装
 
-> This docker tutorial and docker image is provided by [Chasing66](https://github.com/Chasing66)
+> 此 docker 教程与 docker 镜像由[Chasing66](https://github.com/Chasing66)提供
 
-1. Installing docker
+1. 安装docker
 
 ```shell
 curl -fsSL https://get.docker.com | sh
 ```
 
-2. install x-ui
+2. 安装x-ui
 
 ```shell
 mkdir x-ui && cd x-ui
@@ -64,57 +62,36 @@ docker run -itd --network=host \
     misakablog/x-ui:latest
 ```
 
-> Build your own image
+> Build 自己的镜像
 
 ```shell
 docker build -t x-ui .
 ```
 
-## TG bot usage
+## TG 机器人使用
 
-> This feature and tutorial is provided by [FranzKafkaYu](https://github.com/FranzKafkaYu)
 
-X-UI supports daily traffic notification and panel login reminder via Tg bot.
-The specific application tutorial can be found in [blog link](https://coderfan.net/how-to-use-telegram-bot-to-alarm-you-when-someone-login-into-your-vps.html)
-Instructions:Set the bot-related parameters in the background of the panel, including
+- Tg机器人Token
+- Tg机器人ChatId
+- Tg机器人周期运行时间，采用crontab语法  
 
-- Tg Bot Token
-- Tg Bot ChatId
-- Tg Bot cycle running time, using crontab syntax  
+参考语法：
+- 30 * * * * * //每一分的第30s进行通知
+- @hourly      //每小时通知
+- @daily       //每天通知（凌晨零点整）
+- @every 8h    //每8小时通知  
 
-Reference syntax:
-- 30 * * * * * * //notify on the 30ths of every minute
-- @hourly // hourly notification
-- @daily //daily notification (at 00:00 am sharp)
-- @every 8h //notify every 8 hours  
+TG通知内容：
+- 节点流量使用
+- 面板登录提醒
+- 节点到期提醒
+- 流量预警提醒  
 
-TG notification content:
-- Node traffic usage
-- Panel login reminder
-- Node expiration reminder
-- Traffic alert reminder  
 
-More features are being planned...
 
-## Recommended Systems
+## 建议系统
 
 - CentOS 7+
 - Ubuntu 16+
 - Debian 8+
 
-## Credits
-
-* vaxilu's x-ui project: https://github.com/vaxilu/x-ui
-* qist's xray-ui project: https://github.com/qist/xray-ui
-* MHSanaei's 3x-ui project: https://github.com/MHSanaei/3x-ui
-
-## Sponsorship
-
-afdian (for China mainland): https://afdian.net/a/Misaka-blog
-
-![afdian-MisakaNo の 小破站](https://user-images.githubusercontent.com/122191366/211533469-351009fb-9ae8-4601-992a-abbf54665b68.jpg)
-
-## Disclaimer
-
-* This program is for learning and understanding only, not for profit, please delete within 24 hours after downloading, not for any commercial use, text, data and images are copyrighted, if reproduced, please indicate the source.
-* Use of this program is subject to the deployment disclaimer. Use of this program is subject to the laws and regulations of the country where the server is deployed and the country where the user is located, and the author of the program is not responsible for any misconduct of the user.
