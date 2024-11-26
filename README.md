@@ -18,7 +18,7 @@
 # 安装 & 升级
 
 ```
-bash <(wget -qO- https://5th.pp.ua/https://raw.githubusercontent.com/lswmxl/sbui/refs/heads/main/install_CN.sh))
+bash <(wget -qO- https://5th.pp.ua/https://raw.githubusercontent.com/lswmxl/sbui/refs/heads/main/install_CN.sh)
 ```
 
 ## 手动安装&升级
