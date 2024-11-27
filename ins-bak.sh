@@ -29,7 +29,7 @@ else
     echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
 fi
 
-arch=$(arch)
+arch=${arch}
 
 if [[ $arch == "i386" || $arch == "i686" ]]; then
     arch="386"
