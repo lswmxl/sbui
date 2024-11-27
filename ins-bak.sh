@@ -152,6 +152,10 @@ install_x-ui() {
     cd x-ui
     #rm xray-linux-${arch} -f
     wget --no-check-certificate -O /usr/local/x-ui-linux-${arch}.zip https://amd11.870710.xyz/xui/x-ui-linux-${arch}.zip
+            if [[ $? -ne 0 ]]; then
+            echo -e "${red}下载 x-ui $1 失败，请确保此版本存在${plain}"
+            exit 1
+        fi
     chmod +x x-ui bin/xray-linux-${arch}
     cp -f x-ui.service /etc/systemd/system/
     wget --no-check-certificate -O /usr/bin/x-ui https://5th.pp.ua/https://raw.githubusercontent.com/lswmxl/sbui/refs/heads/main/x-ui_CN.sh
