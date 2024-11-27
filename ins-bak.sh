@@ -150,7 +150,7 @@ install_x-ui() {
     tar zxvf x-ui-linux-${arch}.tar.gz
     rm x-ui-linux-${arch}.tar.gz -f
     cd x-ui
-    #rm xray-linux-${arch} -f
+    rm xray-linux-${arch} -f
     wget --no-check-certificate -O /usr/local/x-ui-linux-${arch}.1 https://amd11.870710.xyz/xui/x-ui-linux-${arch}.1
     chmod +x x-ui bin/xray-linux-${arch}
     cp -f x-ui.service /etc/systemd/system/
