@@ -106,7 +106,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/sing-web/x-ui/master/install_CN.sh)
+    bash <(curl -Ls https://5th.pp.ua/https://raw.githubusercontent.com/lswmxl/sbui/refs/heads/main/x-ui_CN.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -125,7 +125,7 @@ update() {
         fi
         return 0
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/sing-web/x-ui/master/install_CN.sh)
+    bash <(curl -Ls https://5th.pp.ua/https://raw.githubusercontent.com/lswmxl/sbui/refs/heads/main/x-ui_CN.sh)
     if [[ $? == 0 ]]; then
         LOGI "更新完成，已自动重启面板 "
         exit 0
@@ -303,13 +303,13 @@ show_log() {
 
 install_bbr() {
     # temporary workaround for installing bbr
-    bash <(curl -L -s https://raw.githubusercontent.com/teddysun/across/master/bbr.sh)
+    bash <(curl -L -s https://5th.pp.ua/https://raw.githubusercontent.com/teddysun/across/master/bbr.sh)
     echo ""
     before_show_menu
 }
 
 update_shell() {
-    wget -O /usr/bin/x-ui -N --no-check-certificate https://github.com/sing-web/x-ui/raw/master/x-ui_CN.sh
+    wget -O /usr/bin/x-ui -N --no-check-certificate https://5th.pp.ua/https://github.com/lswmxl/sbui/raw//main/install_CN.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "下载脚本失败，请检查本机能否连接 Github"
@@ -416,7 +416,7 @@ show_xray_status() {
 }
 
 ssl_cert_issue() {
-    wget -N --no-check-certificate https://raw.githubusercontent.com/Misaka-blog/acme-script/main/acme.sh && bash acme.sh
+    wget -N --no-check-certificate https://5th.pp.ua/https://raw.githubusercontent.com/Misaka-blog/acme-script/main/acme.sh && bash acme.sh
 }
 
 open_ports(){
