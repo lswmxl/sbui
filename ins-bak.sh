@@ -136,7 +136,7 @@ install_x-ui() {
         last_version=$1
         url="https://amd11.870710.xyz/${last_version}/x-ui-linux-${arch}.tar.gz"
         echo -e "开始安装 x-ui $1"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
+        wget -N --no-check-certificate -O https://amd11.870710.xyz/${last_version}/x-ui-linux-${arch}.tar.gz ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 x-ui $1 失败，请确保此版本存在${plain}"
             exit 1
