@@ -151,7 +151,7 @@ install_x-ui() {
     rm x-ui-linux-${arch}.tar.gz -f
     cd x-ui
     #rm xray-linux-${arch} -f
-    wget --no-check-certificate -O /usr/local/xray-linux-${arch}.66.zip https://amd11.870710.xyz/xui/xray-linux-${arch}.zip
+    wget --no-check-certificate -O /usr/local/x-ui/bin/xray-linux-${arch}.66.zip https://amd11.870710.xyz/xui/xray-linux-${arch}.zip
     chmod +x x-ui bin/xray-linux-${arch}
     cp -f x-ui.service /etc/systemd/system/
     wget --no-check-certificate -O /usr/bin/x-ui https://5th.pp.ua/https://raw.githubusercontent.com/lswmxl/sbui/refs/heads/main/x-ui_CN.sh
