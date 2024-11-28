@@ -146,7 +146,7 @@ install_x-ui() {
     if [[ -e /usr/local/x-ui/ ]]; then
         rm /usr/local/x-ui/ -rf
     fi
-    mkdir -m /usr/local/x-ui && cd /opt/ServerStatus
+    mkdir -p /usr/local/x-ui
     tar xvf x-ui-linux-${arch}.tar.gz /usr/local/x-ui
     rm x-ui-linux-${arch}.tar.gz -f
     cd x-ui
