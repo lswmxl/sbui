@@ -127,16 +127,16 @@ install_x-ui() {
             exit 1
         fi
         echo -e "检测到 x-ui 最新版本：${last_version}，开始安装"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz https://5th.pp.ua/https://github.com/lswmxl/sbui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.zip https://5th.pp.ua/https://github.com/lswmxl/sbui/releases/download/${last_version}/x-ui-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 x-ui 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://5th.pp.ua/https://github.com/lswmxl/sbui/releases/download/${last_version}/x-ui-linux-${arch}.tar.gz"
+        url="https://5th.pp.ua/https://github.com/lswmxl/sbui/releases/download/${last_version}/x-ui-linux-${arch}.zip"
         echo -e "开始安装 x-ui $1"
-        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.tar.gz ${url}
+        wget -N --no-check-certificate -O /usr/local/x-ui-linux-${arch}.zip ${url}
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 x-ui $1 失败，请确保此版本存在${plain}"
             exit 1
@@ -146,9 +146,9 @@ install_x-ui() {
     if [[ -e /usr/local/x-ui/ ]]; then
         rm /usr/local/x-ui/ -rf
     fi
-    mkdir -p /usr/local/x-ui && chmod 755 /usr/local/x-ui
-    tar xvf x-ui-linux-${arch}.tar.gz -C /usr/local/x-ui
-    rm x-ui-linux-${arch}.tar.gz -f
+    #mkdir -p /usr/local/x-ui && chmod 755 /usr/local/x-ui
+    uzip x-ui-linux-${arch}.zip #-C /usr/local/x-ui
+    rm x-ui-linux-${arch}.zip -f
     cd x-ui
     chmod +x x-ui bin/xray-linux-${arch}
     cp -f x-ui.service /etc/systemd/system/
