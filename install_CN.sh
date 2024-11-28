@@ -147,7 +147,7 @@ install_x-ui() {
         rm /usr/local/x-ui/ -rf
     fi
     #mkdir -p /usr/local/x-ui && chmod 755 /usr/local/x-ui
-    uzip x-ui-linux-${arch}.zip #-C /usr/local/x-ui
+    unzip x-ui-linux-${arch}.zip #-C /usr/local/x-ui
     rm x-ui-linux-${arch}.zip -f
     cd x-ui
     chmod +x x-ui bin/xray-linux-${arch}
