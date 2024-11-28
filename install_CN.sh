@@ -146,8 +146,8 @@ install_x-ui() {
     if [[ -e /usr/local/x-ui/ ]]; then
         rm /usr/local/x-ui/ -rf
     fi
-
-    tar xvf x-ui-linux-${arch}.tar.gz
+    mkdir -m /usr/local/x-ui && cd /opt/ServerStatus
+    tar xvf x-ui-linux-${arch}.tar.gz /usr/local/x-ui
     rm x-ui-linux-${arch}.tar.gz -f
     cd x-ui
     chmod +x x-ui bin/xray-linux-${arch}
